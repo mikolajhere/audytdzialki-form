@@ -1,0 +1,266 @@
+@import url("https://fonts.googleapis.com/css2?family=Poltawski+Nowy:wght@400;500;600;700&display=swap");
+
+html {
+  background-color: #f1f9fa;
+}
+body {
+  min-height: 100vh;
+  background-size: cover;
+  object-fit: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(#f1f9fa, #f4f4f4);
+}
+
+* {
+  font-family: "Poltawski Nowy", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 576px) {
+  #root {
+    align-items: start;
+  }
+}
+
+.form-container {
+  position: relative;
+  background: white;
+  border-radius: 0.5rem;
+  width: 100%;
+  margin-inline: 1rem;
+  margin-bottom: 4.69em;
+  margin-top: 4.69em;
+  max-width: 585px;
+}
+
+.tito-header {
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  background: linear-gradient(65deg, #4b7f60 30%, #6cb88a);
+  height: auto !important;
+  border-bottom: none;
+
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  display: flex;
+  justify-content: center;
+  line-height: 1.3rem;
+  padding: 1.23em 0;
+  text-align: center;
+  width: 100%;
+  align-items: center;
+}
+
+h1 {
+  font-weight: 700;
+  margin: 0.7rem 0.5rem 0.5rem 0.5rem;
+  flex: 1;
+  font-size: 1.48em;
+  padding: 0 10px;
+}
+
+.form-foot {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+form {
+  max-width: 450px;
+  margin: 35px auto;
+}
+
+form h2 {
+  overflow: hidden;
+  font-size: larger;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0px 0px 2rem;
+}
+form h2 > span {
+  position: relative;
+  display: inline-block;
+}
+form h2 > span::before,
+form h2 > span::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  border-bottom: 2px solid #cdddf7;
+  width: 100vw;
+  margin: 0 20px;
+}
+form h2 > span::before {
+  right: 100%;
+}
+form h2 > span::after {
+  left: 100%;
+}
+
+select {
+  color: #000;
+  min-height: 35px;
+  padding: 10px 15px;
+  border: solid 1px #ddd;
+  border-radius: 0.25rem;
+  font-size: large;
+  margin-bottom: 1rem;
+  transition: 0.2s;
+  font-family: inherit;
+  line-height: inherit;
+
+  vertical-align: middle;
+  background: #fff
+    url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E")
+    no-repeat right 0.75rem center;
+  background-size: 8px 10px;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+textarea {
+  min-height: 35px;
+  padding: 10px 15px;
+  border: solid 1px #ddd;
+  border-radius: 0.25rem;
+  font-size: large;
+  margin-bottom: 1rem;
+  transition: 0.2s;
+}
+
+.btn-main {
+  padding: 0.85em;
+  border-radius: 11px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+  display: block;
+  width: 100%;
+  background: #4b7f60;
+  border-color: #4b7f60 !important;
+  color: #fff;
+  border: 1px solid #ccc !important;
+  white-space: nowrap;
+  cursor: pointer;
+  margin-top: 4rem;
+}
+
+.btn-main:hover {
+  border: solid 1px #385f48;
+  background-color: #385f48;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  font-size: large;
+  color: #4d4d4d;
+}
+
+.btn-second {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  width: fit-content;
+  margin: 5px auto 0;
+  color: #4d4d4d;
+}
+
+.react-datepicker-wrapper input {
+  min-height: 45px;
+  max-height: 45px;
+  padding: 0 15px;
+  border: solid 1px #ddd;
+  border-radius: 0.25rem;
+  font-size: large;
+  transition: 0.2s;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.form-content p {
+  text-align: center;
+}
+
+.tito-container {
+  margin: 1.23em 1.23em 0;
+  position: relative;
+}
+
+.tito-label {
+  color: #555;
+  font-size: 11px;
+  font-weight: 700;
+  left: 13px;
+  position: absolute;
+  text-transform: uppercase;
+  top: 10px;
+  z-index: 1;
+}
+
+.tito-input {
+  box-shadow: none;
+  outline: none;
+  height: 58px;
+  padding: 0 12px;
+  width: 100%;
+  padding-top: 19px;
+  border: 1px solid #e6e6e6;
+  border-radius: 0.31em;
+  font-size: 1.2rem;
+  display: block;
+  line-height: 1.1;
+  box-sizing: border-box;
+}
+
+.tito-input:focus,
+.tito-input:active {
+  box-shadow: 0px 2px 8px 4px #f8f9fc;
+}
+
+.tito-input::placeholder {
+  opacity: 0.6;
+}
+
+#root img:first-of-type {
+  position: fixed;
+  top: 25px;
+  left: 25px;
+}
+
+img.logo {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+}

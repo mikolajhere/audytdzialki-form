@@ -28,9 +28,15 @@ const INITIAL_DATA = {
 export const App = () => {
   const [data, setData] = useState(INITIAL_DATA);
 
-  useAddHiddenInputs("my-form", []);
+  // Callback function to update data state
+  const updateData = (newData) => {
+    setData((prevData) => ({
+      ...prevData,
+      ...newData,
+    }));
+  };
 
-  const hiddensObj = {};
+  useAddHiddenInputs("my-form", updateData);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -42,13 +48,6 @@ export const App = () => {
       }));
       next(); // Move to the next step if hash is present
     }
-
-    setTimeout(() => {
-      const hiddens = document.querySelectorAll("input[type='hidden']");
-      hiddens.forEach((hidden) => {
-        hiddensObj[hidden.name] = hidden.value;
-      });
-    }, 1);
   }, []);
 
   function updateFields(fields) {
@@ -66,7 +65,7 @@ export const App = () => {
     e.preventDefault();
 
     if (isFirstStep) {
-      const formData = { ...data, ...hiddensObj };
+      const formData = { ...data };
       console.log({ formData });
       fetch(
         "https://system.pewnylokal.pl/crm/api/newEndpoint.php?format=json",
@@ -80,22 +79,16 @@ export const App = () => {
       )
         .then((response) => response.json())
         .then((data) => {
-          setData({
+          setData((prevData) => ({
+            ...prevData,
             clientHash: data.hash,
-            submit: 1,
-            dataEmailTemplate: "audytdzialki.pl.php",
-          });
+          }));
           console.log("Endpoint Success: ", data);
         })
         .catch((error) => {
           console.error("Endpoint Error: ", error);
         });
       next();
-      setData({
-        dataEmailTemplate: "audytdzialki.pl.php",
-        clientHash: data.clientHash,
-        submit: 1,
-      });
     } else if (!isLastStep) {
       console.log(data);
       fetch("", {
@@ -105,9 +98,7 @@ export const App = () => {
         },
         body: JSON.stringify(data),
       })
-        .then((response) => {
-          response.json();
-        })
+        .then((response) => response.json())
         .then((data) => {
           console.log("UpdateClientData Success: ", data);
         })
@@ -115,11 +106,6 @@ export const App = () => {
           console.error("UpdateClientData Error: ", error);
         });
       next();
-      setData({
-        dataEmailTemplate: "audytdzialki.pl.php",
-        clientHash: data.clientHash,
-        submit: 1,
-      });
     }
   }
 
@@ -152,5 +138,3 @@ export const App = () => {
     </>
   );
 };
-
-// test

@@ -1,9 +1,14 @@
+/* eslint-disable react/prop-types */
 import { FormWrapper } from "./FormWrapper";
 
-export function UserForm({ dataPhone, serviceDataAddressCity, updateFields, dataEmail }) {
+export function UserForm({
+  dataPhone,
+  serviceDataAddressCity,
+  updateFields,
+  dataEmail,
+}) {
   return (
-    <FormWrapper title="Dane kontaktowe"> 
-
+    <FormWrapper title="Dane kontaktowe">
       <div className="tito-container">
         <label className="tito-label" htmlFor="phone">
           {" "}
@@ -34,7 +39,9 @@ export function UserForm({ dataPhone, serviceDataAddressCity, updateFields, data
           name="dataValues[serviceDataAddressCity]"
           placeholder="Kołbiel"
           value={serviceDataAddressCity}
-          onChange={(e) => updateFields({ serviceDataAddressCity: e.target.value })}
+          onChange={(e) =>
+            updateFields({ serviceDataAddressCity: e.target.value })
+          }
         />
       </div>
       <div className="tito-container">

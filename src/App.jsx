@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UseMultistepForm } from "./components/UseMultistepForm";
 import { UserForm } from "./components/UserForm";
 import { ThankYouForm } from "./components/ThankYouForm";
@@ -57,11 +57,10 @@ export const App = () => {
     });
   }
 
-  const { isFirstStep, step, isSecondStep, isLastStep, next } =
-    UseMultistepForm([
-      <UserForm {...data} updateFields={updateFields} />,
-      <ThankYouForm {...data} updateFields={updateFields} />,
-    ]);
+  const { isFirstStep, step, isLastStep, next } = UseMultistepForm([
+    <UserForm key={1} {...data} updateFields={updateFields} />,
+    <ThankYouForm key={2} {...data} updateFields={updateFields} />,
+  ]);
 
   function onSubmit(e) {
     e.preventDefault();
@@ -87,9 +86,6 @@ export const App = () => {
             dataEmailTemplate: "audytdzialki.pl.php",
           });
           console.log("Endpoint Success: ", data);
-          gtag("event", "conversion", {
-            send_to: "AW-303136934/fX6FCObqqbMDEKaBxpAB",
-          });
         })
         .catch((error) => {
           console.error("Endpoint Error: ", error);
@@ -130,7 +126,7 @@ export const App = () => {
   return (
     <>
       <img
-        src="/img/audyt-dzialki-brand.svg"
+        src="audyt-dzialki-brand.svg"
         height={30}
         className="logo"
         alt="logo"

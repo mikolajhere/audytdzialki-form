@@ -4,6 +4,7 @@ import { UserForm } from "./components/UserForm";
 import { ThankYouForm } from "./components/ThankYouForm";
 import "../src/styles/App.css";
 import { useAddHiddenInputs } from "./scripts/Hidden";
+import axios from "axios";
 
 const INITIAL_DATA = {
   dataLog: "",
@@ -66,45 +67,28 @@ export const App = () => {
 
     if (isFirstStep) {
       const formData = { ...data };
-      console.log({ formData });
-      fetch(
-        "https://system.pewnylokal.pl/crm/api/newEndpoint.php?format=json",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => {
+      axios
+        .post(
+          "https://system.pewnylokal.pl/crm/api/newEndpoint.php?format=json",
+          formData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
           setData((prevData) => ({
             ...prevData,
-            clientHash: data.hash,
+            clientHash: response.data.hash,
           }));
-          console.log("Endpoint Success: ", data);
+          console.log("Endpoint Success: ", response.data);
         })
         .catch((error) => {
           console.error("Endpoint Error: ", error);
         });
       next();
     } else if (!isLastStep) {
-      console.log(data);
-      fetch("", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("UpdateClientData Success: ", data);
-        })
-        .catch((error) => {
-          console.error("UpdateClientData Error: ", error);
-        });
       next();
     }
   }
